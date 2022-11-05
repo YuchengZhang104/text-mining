@@ -8,9 +8,9 @@ To implement my aim for this project, first of all, I have installed the imdb pa
 
 ## 3. Results
 My ideal output of this project would be to see audience's general point of view on this movie with several most frequent words, and by combining this result to the rating, I would know why people give out this high or low rating with their most frequent descriptive words in the review. My project has given the result of the most frequent word and the times it appeared in all of the reviews in Monty Python and the Holy Grail. The result is as below: 
-'''
+```
 Monty Python and the Holy Grail has a rating of 10. The most frequent words and the times they appear in the reviews of Monty Python and the Holy Grail are [('Sir', 4), ('time', 3), ('film', 5), ('Python', 4), ('time', 3), ('Python', 4), ('This', 4), ('Life', 3), ('Holy', 7), ('film', 3), ('Python', 2), ('film', 4), ('Python', 4), ('one', 14), ('Holy', 4), ('classic', 2), ('jokes', 3), ('laugh', 3), ('movie', 5), ('movie', 3), ('Monty', 4), ('film', 4), ('comedy', 3), ('see', 2), ('must', 5)]
-'''
+```
 We can tell from the result that 3 of the reviews have 'laugh','jokes','comedy' as the most frequent word. This indicates that this movie might be a comedy that makes people laugh. It also mentions a lot about Python or Monty, indicating this might be the name of the key figure in this movie. This movie has a rating of 10, and we do not see any negative words in the reviews, we can see positive words like 'classic'. If I were to test another film with rather low ratings, I would assume the result to be different to this one and might include more rather negative adjectives and less positive ones.
 One thing I have noticed in the results is that the words are still not descriptive enough to give a larger picture of audience's general view on this film. The words that are non-descrptive are just too much to be fully excluded in the algorithm, and I think that is one of the draw-back to this project that I could probably keep working on in the future. I did thought about using a adjective dictionary as a supplementary data, but failed to find a reliable one.
 
