@@ -27,13 +27,30 @@ def movie_rating(movieid):
 # print(movie_rating('0468569'))
 
 
-def word_frequency(l):
-    """This function has one parameter: a string
+def stop_words(filename):
+    """
+    This function will return a set with words in an appointed file (which will be addressed in the code below).
+    """
+    f = open(filename, encoding='UTF8')
+    stop_word_set = set()
+    for line in f:
+        word = line.strip()
+        stop_word_set.add(word)
+    return stop_word_set
+
+
+def word_frequency(l, exclude_stopwords=True):
+    """This function has two parameter: a string, and excluding the stopwords.
     word_frequency is designed to take the input of a string, then output the most frequent word in this string and the times it appeared,
-    excluding all the words with length less than three"""
+    excluding all the words with length less than three, as well as exclude the word if it is in stopwords.txt"""
     d = dict()
     words = l.split()
+    if exclude_stopwords:
+        filename = 'stopwords.txt'
+        stopwords = stop_words(filename)
     for word in words:
+        if word in stopwords:
+            continue
         if word in d:
             d[word] += 1
         else:
@@ -48,35 +65,9 @@ def word_frequency(l):
         most_frequent_value = list(result.values())[n]
     return most_frequent_key, most_frequent_value
 
-# l="Babson Beaver go go go a a a a"
-# print(word_frequency(l))
 
-
-def ban(a):
-    """This function has one parameter: a string
-    ban is designed to remove some rather 'crappy' words that gets repetitive and does not mean a lot in the string"""
-    b = a.replace('but', ' ')
-    c = b.replace('and', ' ')
-    d = c.replace('that', ' ')
-    e = d.replace('this', ' ')
-    f = e.replace('the', ' ')
-    g = f.replace('you', ' ')
-    h = g.replace('are', ' ')
-    i = h.replace('was', ' ')
-    j = i.replace('for', ' ')
-    k = j.replace('The', ' ')
-    l = k.replace('him', ' ')
-    m = l.replace('from', ' ')
-    n = m.replace('her', ' ')
-    o = n.replace('she', ' ')
-    p = o.replace('they', ' ')
-    q = p.replace('them', ' ')
-    r = q.replace('there', ' ')
-    s = r.replace('with',' ')
-    t = s.replace('This','.')
-    return t
-
-# print(ban('and and and the the yes I am from Babson'))
+# l="Babson Beaver boston boston and and and go go go a a a a"
+# print(word_frequency(l,exclude_stopwords=True))
 
 
 def most_frequent_review(movieid):
@@ -89,8 +80,7 @@ def most_frequent_review(movieid):
     res = []
     while n < len(s):
         a = movie_reviews['data']['reviews'][n]['content']
-        new = ban(a)
-        word = word_frequency(new)
+        word = word_frequency(a, exclude_stopwords=True)
         res.append(word)
         n += 1
     return res
